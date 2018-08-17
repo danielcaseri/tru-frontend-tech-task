@@ -7,9 +7,18 @@ export default class Footer extends React.Component {
 render() {
     return (
         <div className="footer">
-            <img src={pulse} className="logo" alt="logo" />
-            <img src={notifications} className="logo" alt="logo" />
-            <img src={leaderboard} className="logo" alt="logo" />
+            <div> 
+            <img src={pulse} className="picture block" alt="picture" />
+            Pulse
+            </div>
+            <div> 
+            <img src={leaderboard} className="picture block" alt="picture" />
+            LeaderBoard
+            </div>
+            < div > 
+            <img src={notifications} className="picture block" alt="picture" />
+            Notification
+            </div>
         </div>
     )
 }

@@ -3,9 +3,9 @@ import { Line } from 'rc-progress';
 
 export class MeasureComponent extends React.Component {
 
-  colorTitle(title) {
-    let className = "title "
-    switch (title) {
+  colorTitle(specColor) {
+    let className = "measureCard "
+    switch (specColor) {
       case "Experience":  
       className += "experienceColor";
        break;
@@ -43,16 +43,17 @@ barPercentage(rate) {
     return (
       <div className="measure-body">
         {this.props.measures.map(measure => (
-          <div className="measureCard" key={measure.$id}>
-            <div className= {this.colorTitle(measure.caption)} >
+          <div className= {this.colorTitle(measure.caption)} key={measure.$id}>
+            <div className= "title" >
               {measure.caption}
             </div>
            < Line percent = { this.barPercentage(measure.cells["0"].formattedValue) }
-              strokeWidth = "1"
+              strokeWidth = "3"
+              trailWidth = "3"
               strokeColor = {this.barColor(measure.cells["0"].formattedValue)}
             />
             <div className="rate"> 
-              {measure.cells["0"].formattedValue} out of 9
+              <span className="rate-number">{measure.cells["0"].formattedValue} </span> out of 9
             </div>
           </div>
         ))} 
