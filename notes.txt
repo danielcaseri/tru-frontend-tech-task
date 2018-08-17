@@ -1,0 +1,16 @@
+I have done the application as of request, please have a look and let me know what you think.
+
+Some part of the task where a bit unclear or free to interpretation so 
+I made the following assumption having in mind the final design: 
+
+1. ##Background section 
+    it says that I should use some specific colors based on category 
+    but doesn't say how or where and they are not in the final design.
+    I decided to use them as light background of the sections for the web application only 
+2. ##Task 
+    it's suppose to toggle between Online and Instore data but the design doesn't show how.
+    I decided to add a small part (top right) to show which data are on display
+    and a button to be able to switch.
+
+3.  Feedback data
+    the rate it's not suppose to go over 9. in case it does it's limited to 9.

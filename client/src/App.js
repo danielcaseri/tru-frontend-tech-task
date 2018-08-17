@@ -3,8 +3,8 @@ import './App.css';
 import MeasureComponent from './components/MeasureComponent'
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Loading from "./components/Loading";
-import Service from './components/service';
+import Loading from './components/Loading';
+import Service from './services/service';
 class App extends Component {
   constructor(props) { 
     super(props);
@@ -24,7 +24,7 @@ class App extends Component {
   })
   
   componentDidMount() {
-  this.requestData()
+    this.requestData()
   }
 
   // call the API, once the promise is complete update the state
@@ -61,6 +61,7 @@ class App extends Component {
   toggle (isOnlineData) {
     return isOnlineData ? "Online" : "In store";
   }
+    
   render() {
     return ( 
       <div className = "App" >

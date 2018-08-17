@@ -6,24 +6,18 @@ export default class MeasureComponent extends React.Component {
   backgroundColor(specColor) {
     let className = "measureCard "
     switch (specColor) {
-      case "Experience":  
-      className += "experienceColor";
-       break;
-      case "Product":
-        className += "productColor";
+      case "Experience":   className += "experienceColor"; 
         break;
-      case "Recommend":
-        className += "recommendColor";
+      case "Product": className += "productColor"; 
         break;
-      case "Service":
-        className += "serviceColor";
+      case "Recommend": className += "recommendColor"; 
         break;
-      case "Ease of Use":
-        className += "serviceColor";
+      case "Service": className += "serviceColor"; 
         break;
-        case "Value":
-          className += "valueColor";
-          break;
+      case "Ease of Use": className += "serviceColor"; 
+        break;
+      case "Value": className += "valueColor"; 
+        break;
       default: 
         break;
     }
@@ -43,6 +37,7 @@ export default class MeasureComponent extends React.Component {
     let percentageValue= rate*100/9;
     return percentageValue>100 ? 100 : percentageValue
   }
+
   renderBar(rate) {
     return (
       < Line percent = { this.barPercentage(rate) }
@@ -52,24 +47,24 @@ export default class MeasureComponent extends React.Component {
       />
     )
   }
-renderRateValue(rate, name) {
-  rate = rate >9 ? 9 : rate
-  if(rate) {
-    return (
-      <div className="rate">  
-        <span className="rate-number">{rate} </span> out of 9
-      </div>
-    )
-  } 
-  else {
-    return (
-      <div className="rate">  
-      <span> No data for {name} yet </span>
-      </div>
-    )
-  }
 
-}
+  renderRateValue(rate, name) {
+    rate = rate >9 ? 9 : rate
+    if(rate) {
+      return (
+        <div className="rate">  
+          <span className="rate-number">{rate} </span> out of 9
+        </div>
+      )
+    } 
+    else {
+      return (
+        <div className="rate">  
+          <span> No data for {name} yet </span>
+        </div>
+      )
+    }
+  }
   render() {
     return (
       <div className="measure-body">
