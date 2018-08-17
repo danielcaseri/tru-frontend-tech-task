@@ -41,7 +41,7 @@ barPercentage(rate) {
 }
   render() {
     return (
-      <div>
+      <div className="measure-body">
         {this.props.measures.map(measure => (
           <div className="measureCard" key={measure.$id}>
             <div className= {this.colorTitle(measure.caption)} >

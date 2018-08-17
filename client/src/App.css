@@ -49,17 +49,27 @@
 }
  /* 3. Footer */
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; 
   display: flex;
   justify-content: space-between;
- background-color: #2bb5fd;
+  background-color: #2bb5fd;
 }
 
  /* 4. Measure component */
+ .measure-body {
+   display: flex;
+   flex-direction: row; 
+   flex-wrap: wrap;
+  margin-bottom: 50px;
+ }
 .measureCard {
   border: 2px solid #cccccc;
   border-radius: 2px;
-  margin: 20px;
+  margin: 5px;
   padding:10px;
+  width: 30%;
 }
 .experienceColor {
 color: #FFDC28;
