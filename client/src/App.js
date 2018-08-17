@@ -1,35 +1,72 @@
 import React, { Component } from 'react';
 import './App.css';
-import {MeasureComponent} from './components/MeasureComponent'
+import MeasureComponent from './components/MeasureComponent'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Loading from "./components/Loading";
+import Service from './components/service';
 class App extends Component {
-constructor(props) {
-  super(props);
-  this.state = {
-    measuresData: []
-  };
-}
+  constructor(props) { 
+    super(props);
+    this.state = {
+      measuresData: [],
+      loadingData: false,
+      isOnlineData: true
+    };
+    this.service = new Service()
+  }
 
+  //update the state once the API call is complete
+  updateState = (data) => this.setState({
+    measuresData: data,
+    loadingData: false,
+    isOnlineData: !this.state.isOnlineData
+  })
+  
   componentDidMount() {
-    fetch('http://127.0.0.1:3001/measures?shoppingChannel=instore')
-    .then((response) => {
-      response.json().then((data) => {
-        console.log(data)
-        // remove calculation as it's not a real measure
-        data.splice(0,1);
-          this.setState({
-          measuresData: data
-        })
-      }) 
-      });
+  this.requestData()
+  }
+
+  // call the API, once the promise is complete update the state
+  requestData() {
+    this.setState({
+      loadingData: true
+    })
+    this.service.dataRequest(this.state.isOnlineData, this.updateState)
+  }
+
+  //switch between Loading and Data to show
+  dataRender() {
+    if(this.state.loadingData){
+      return <Loading />
+    } else {
+      return (
+        <div>
+          {this.renderButton()}
+          <MeasureComponent measures = { this.state.measuresData } />
+        </div>
+        )
+    }
+  }
+  renderButton() {
+   return( 
+    <div className="data-info">
+      These are { this.toggle(this.state.isOnlineData)} measures  
+      < button className="button" onClick = {() => this.requestData()} >
+         Switch to { this.toggle(!this.state.isOnlineData) }
+      </button>
+    </div>
+    )}
+
+  toggle (isOnlineData) {
+    return isOnlineData ? "Online" : "In store";
   }
   render() {
-    return (
-      <div className="App">
-      <Header />
-      <MeasureComponent measures={this.state.measuresData} />
-      <Footer />
+    return ( 
+      <div className = "App" >
+        <Header />
+        {this.dataRender()} 
+        <Footer />
       </div>
     );
   }
