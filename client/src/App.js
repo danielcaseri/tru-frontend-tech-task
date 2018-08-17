@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {MeasureComponent} from './components/MeasureComponent'
-
-// {
-//   "$id": "1",
-//   "canOrderBy": false,
-//   "caption": "Calculation",
-//   "cells": [{
-//     "$id": "2",
-//     "value": "Real Value",
-//     "type": "string",
-//     "formattedValue": "Real Value",
-//     "rawValue": "Real Value",
-//     "formatString": null
-//   }],
-//   "formattedCaption": "Calculation",
-//   "levelCaption": null,
-//   "formattedLevelCaption": null,
-//   "columnType": "DimensionMember"
-// },
+import Header from './components/Header';
+import Footer from './components/Footer';
 class App extends Component {
 constructor(props) {
   super(props);
   this.state = {
-    fetched: []
+    measuresData: []
   };
 }
 
@@ -33,8 +16,10 @@ constructor(props) {
     .then((response) => {
       response.json().then((data) => {
         console.log(data)
+        // remove calculation as it's not a real measure
+        data.splice(0,1);
           this.setState({
-          fetched: data
+          measuresData: data
         })
       }) 
       });
@@ -42,14 +27,9 @@ constructor(props) {
   render() {
     return (
       <div className="App">
-      <MeasureComponent measures={this.state.fetched} />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <Header />
+      <MeasureComponent measures={this.state.measuresData} />
+      <Footer />
       </div>
     );
   }
